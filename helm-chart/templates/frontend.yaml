@@ -147,13 +147,21 @@ metadata:
   labels:
     app: {{ .Values.frontend.name }}
 spec:
+  {{- if .Values.frontend.nodePort }}
+  type: NodePort
+  {{- else}}
   type: ClusterIP
+  {{- end}}
   selector:
     app: {{ .Values.frontend.name }}
   ports:
   - name: http
     port: 80
     targetPort: 8080
+    {{- if .Values.frontend.nodePort }}
+    nodePort: {{ .Values.frontend.nodePort }}
+    protocol: TCP
+    {{- end}}
 {{- if .Values.frontend.externalService }}
 ---
 apiVersion: v1
