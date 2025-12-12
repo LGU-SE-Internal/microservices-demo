@@ -19,7 +19,7 @@
 images:
   repository: 10.10.10.240/library
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "b0158274"
+  tag: "308c1e71"
 
 serviceAccounts:
   # Specifies whether service accounts should be created.
