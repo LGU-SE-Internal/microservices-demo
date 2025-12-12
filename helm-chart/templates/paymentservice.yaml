@@ -73,6 +73,10 @@ spec:
         ports:
         - containerPort: 50051
         env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
         - name: PORT
           value: "50051"
         {{- if .Values.opentelemetryCollector.create }}
@@ -83,7 +87,7 @@ spec:
         {{- end }}
         {{- if .Values.opentelemetryCollector.monitoring }}
         - name: COLLECTOR_SERVICE_ADDR
-          value: "opentelemetry-kube-stack-daemon-collector.monitoring:4317"
+          value: "$(NODE_IP):4317"
         - name: OTEL_SERVICE_NAME
           value: "{{ .Values.paymentService.name }}"
         {{- end }}
