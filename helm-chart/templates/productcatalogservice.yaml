@@ -83,7 +83,7 @@ spec:
         {{- end }}
         {{- if .Values.opentelemetryCollector.monitoring }}
         - name: COLLECTOR_SERVICE_ADDR
-          value: "opentelemetry-collector-deployment.monitoring:4317"
+          value: "opentelemetry-kube-stack-daemon-collector.monitoring:4317"
         - name: OTEL_SERVICE_NAME
           value: "{{ .Values.productCatalogService.name }}"
         {{- end }}
